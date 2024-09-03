@@ -1,0 +1,21 @@
+-- Create Users table
+CREATE TABLE Users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
+
+-- Create Books table
+CREATE TABLE Books (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) UNIQUE NOT NULL,
+    average_score FLOAT DEFAULT -1,
+    borrow_count INT DEFAULT 0
+);
+
+-- Create Borrowings table
+CREATE TABLE Borrowings (
+    id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES Users(id),
+    book_id INT REFERENCES Books(id),
+    score INT
+);
